@@ -1,0 +1,25 @@
+<h3>{{role.name}}</h3>
+
+<h4>Role Entitlements</h4>
+
+<ul>
+	<li ng-repeat="entitlement in role.entitlements">
+		<a href="#/entitlement/{{entitlement.id}}">{{entitlement.name}}</a>
+	</li>
+</ul>
+
+<h4>Users in Role</h4>
+
+<ul>
+	<li ng-repeat="user in role.users">
+		<a href="#/user/{{user.id}}">{{user.email}}</a>
+	</li>
+</ul>
+
+<h4>Custom Role Attributes</h4>
+
+<ul>
+	<li ng-repeat="attr in role.custom_attributes">
+		<a href="#/customattribute/{{attr.id}}">{{attr.key}} : {{attr.value}}</a>
+	</li>
+</ul>

@@ -1,0 +1,10 @@
+{
+  "name": "fg-admin-ui",
+  "version": "0.0.0",
+  "description": "Feature Guardian Admin UI",
+  "main": "server.js",
+  "author": "featureguardian",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

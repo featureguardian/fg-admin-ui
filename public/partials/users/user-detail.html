@@ -1,0 +1,71 @@
+<h3>{{user.email}}</h3>
+
+<h4>Roles</h4>
+<div class="row">
+	<div class="col-md-4">
+		
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Current Roles <small>click to remove</small></h3>
+		  </div>
+		  <div class="panel-body">
+		    <div class="list-group">
+			  <button ng-repeat="role in user.roles" type="button" class="list-group-item" ng-click="removeFromRole(role.id, $event)">{{role.name}}</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Available Roles <small>click to add</small></h3>
+		  </div>
+		  <div class="panel-body">
+		    <div class="list-group">
+			  <button ng-repeat="role in roles" type="button" class="list-group-item" ng-click="addToRole(role.id, $event)">{{role.name}}</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+
+<h4>Entitlements (in addition to entitlements granted by role)</h4>
+<div class="row">
+	<div class="col-md-4">
+		
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Current Entitlements <small>click to remove</small></h3>
+		  </div>
+		  <div class="panel-body">
+		    <div class="list-group">
+			  <button ng-repeat="entitlement in user.entitlements" type="button" class="list-group-item" ng-click="removeEntitlement(entitlement.id, $event)">{{entitlement.name}}</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Available Entitlements <small>click to add</small></h3>
+		  </div>
+		  <div class="panel-body">
+		    <div class="list-group">
+			  <button ng-repeat="entitlement in entitlements" type="button" class="list-group-item" ng-click="giveEntitlement(entitlement.id, $event)">{{entitlement.name}}</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<h4>Custom Attributes</h4>
+<ul>
+	<li ng-repeat="attr in user.custom_attributes">
+		<a href="#/customattribute/{{attr.id}}">{{attr.key}} : {{attr.value}}</a>
+	</li>
+</ul>
