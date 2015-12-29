@@ -35,7 +35,7 @@
 
   <body class="container" style="padding-top:50px;">
 
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -53,37 +53,9 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="#/roles">Roles <span class="sr-only">(current)</span></a></li>
         <li><a href="#/users">Users</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
       </ul>
-      <form class="navbar-form navbar-left ng-pristine ng-valid" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+        <li><a ng-show="loginPage" class="ng-hide" href="#/logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -153,7 +125,7 @@
     <script src="/js/controllers/application.js"></script>
     <script src="/js/controllers/roles.js"></script>
     <script src="/js/controllers/users.js"></script>
-  <script src="/js/controllers/login.js"></script>
+  <script src="/js/controllers/auth.js"></script>
     <script src="/js/services/application.js"></script>
     <script src="/js/services/roles.js"></script>
     <script src="/js/services/users.js"></script>

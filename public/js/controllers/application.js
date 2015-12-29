@@ -4,5 +4,6 @@ applicationControllers.controller('ApplicationInfoCtrl', ['$scope', 'Application
 
 	$scope.application = Application.query();
 
+
 }]);
  
