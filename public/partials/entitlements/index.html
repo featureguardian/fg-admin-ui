@@ -1,0 +1,23 @@
+<h3>Entitlements</h3>
+
+
+<ul>
+	<li ng-repeat="entitlement in entitlements">
+		<a href="#/entitlement/{{entitlement.id}}">{{entitlement.name}}</a>
+	</li>
+</ul>
+
+<form ng-submit="createEntitlement()">
+
+  <h4>Create New Entitlement</h4>
+
+  <div class="form-group"">
+    <label for="entitlement-name">Entitlement Name</label>
+    <input type="text" class="form-control" id="entitlement-name" placeholder="Entitlement Name" ng-model="entitlementName" required>
+  </div>
+  <div class="form-group">
+    <label for="entitlement-type">Entitlement Type</label>
+    <input type="text" class="form-control" id="entitlement-type" placeholder="Any Identifier for New Entitlement" ng-model="entitlementType">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

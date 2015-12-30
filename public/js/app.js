@@ -3,6 +3,8 @@ var fg = angular.module('featureguardian', [
     'applicationControllers',
     'roleControllers',
     'roleServices',
+    'entitlementControllers',
+    'entitlementServices',
     'applicationServices',
     'userControllers',
     'userServices',
@@ -34,6 +36,12 @@ fg.config(['$routeProvider', '$localStorageProvider',
         }).when('/user/:userId', {
             templateUrl: 'partials/users/user-detail.html',
             controller: 'UserDetailCtrl'
+        }).when('/entitlements', {
+            templateUrl: 'partials/entitlements/index.html',
+            controller: 'EntitlementListCtrl'
+        }).when('/entitlement/:entitlementId', {
+            templateUrl: 'partials/entitlements/entitlement-detail.html',
+            controller: 'EntitlementDetailCtrl'
         }).when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl'

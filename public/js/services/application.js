@@ -7,7 +7,7 @@ applicationServices.factory('Application', ['$resource', '$http', '$interpolate'
       url = $interpolate(url)({url: $fgConfig.apiBaseUrl, port: $fgConfig.apiPort});
 
     return $resource(url, {}, {
-      query: {method:'GET', isArray:false, headers:{'Authorization':'Bearer ' + $localStorage.fgToken.t }}
+      query: {method:'GET', isArray:false, headers:{ Authorization: $localStorage.fgToken.t }}
     });
 
 

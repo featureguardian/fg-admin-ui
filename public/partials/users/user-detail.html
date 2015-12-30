@@ -64,8 +64,27 @@
 </div>
 
 <h4>Custom Attributes</h4>
+
 <ul>
-	<li ng-repeat="attr in user.custom_attributes">
+	<li ng-repeat="attr in user.customAttributes">
 		<a href="#/customattribute/{{attr.id}}">{{attr.key}} : {{attr.value}}</a>
+		<button type="button" class="btn btn-sm btn-primary" aria-label="Remove" ng-click="removeAttr($index)">
+		  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		</button>
 	</li>
 </ul>
+
+<form ng-submit="createCustomAttr()">
+
+  <h4>Create New Custom Attribute for this User</h4>
+
+  <div class="form-group"">
+    <label for="key">Attribute Key</label>
+    <input type="text" class="form-control" id="key" placeholder="Key" ng-model="attrKey" required>
+  </div>
+  <div class="form-group">
+    <label for="val">Attribute Value</label>
+    <input type="text" class="form-control" id="val" placeholder="Value" ng-model="attrValue" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

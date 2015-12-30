@@ -1,25 +1,26 @@
-<h3>{{role.name}}</h3>
+<h3>{{entitlement.name}}</h3>
 
-<h4>Role Entitlements</h4>
+<h4>Roles with this Entitlement</h4>
 
 <ul>
-	<li ng-repeat="entitlement in role.entitlements">
+	<li ng-repeat="role in entitlement.roles">
 		<a href="#/entitlement/{{entitlement.id}}">{{entitlement.name}}</a>
 	</li>
 </ul>
 
-<h4>Users in Role</h4>
+<h4>Users with this Entitlement</h4>
+<p>Users could have this entitlement through role as well</p>
 
 <ul>
-	<li ng-repeat="user in role.users">
+	<li ng-repeat="user in entitlement.users">
 		<a href="#/user/{{user.id}}">{{user.email}}</a>
 	</li>
 </ul>
 
-<h4>Custom Attributes for this Role</h4>
+<h4>Custom Attributes for this Entitlement</h4>
 
 <ul>
-	<li ng-repeat="attr in role.customAttributes">
+	<li ng-repeat="attr in entitlement.customAttributes">
 		<a href="#/customattribute/{{attr.id}}">{{attr.key}} : {{attr.value}}</a>
 		<button type="button" class="btn btn-sm btn-primary" aria-label="Remove" ng-click="removeAttr($index)">
 		  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -29,7 +30,7 @@
 
 <form ng-submit="createCustomAttr()">
 
-  <h4>Create New Custom Attribute for this Role</h4>
+  <h4>Create New Custom Attribute for this Entitlement</h4>
 
   <div class="form-group"">
     <label for="key">Attribute Key</label>
@@ -41,3 +42,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+

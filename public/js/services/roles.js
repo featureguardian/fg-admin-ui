@@ -12,7 +12,7 @@ roleServices.factory('Roles', ['$resource', '$location', '$interpolate', '$local
       url = $interpolate(url)({url: $fgConfig.apiBaseUrl, port: $fgConfig.apiPort});
 
     return $resource(url + ':roleId', {}, {
-      query: {method:'GET', params:params, isArray:true, headers:{'Authorization':'Bearer ' + $localStorage.fgToken.t }},
-        get: {method:'GET', isArray:false, headers:{'Authorization':'Bearer ' + $localStorage.fgToken.t }}
+      query: {method:'GET', params:params, isArray:true, headers:{ Authorization: $localStorage.fgToken.t }},
+        get: {method:'GET', isArray:false, headers:{ Authorization: $localStorage.fgToken.t }}
     });
   }]); 

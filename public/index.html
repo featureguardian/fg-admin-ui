@@ -33,8 +33,6 @@
     <!--STYLES END-->
   </head>
 
-  <body class="container" style="padding-top:50px;">
-
   <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -53,13 +51,18 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="#/roles">Roles <span class="sr-only">(current)</span></a></li>
         <li><a href="#/users">Users</a></li>
+        <li><a href="#/entitlements">Entitlements</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-show="loginPage" class="ng-hide" href="#/logout">Logout</a></li>
+        <li><a href="#/logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+  <body class="container-fluid" style="padding-top:50px;">
+
+  
 
 <div ng-view></div>
 
@@ -123,12 +126,14 @@
     <script src="/js/app.js"></script>
     <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="/js/controllers/application.js"></script>
+    <script src="/js/controllers/entitlements.js"></script>
     <script src="/js/controllers/roles.js"></script>
     <script src="/js/controllers/users.js"></script>
-  <script src="/js/controllers/auth.js"></script>
+    <script src="/js/controllers/auth.js"></script>
     <script src="/js/services/application.js"></script>
     <script src="/js/services/roles.js"></script>
     <script src="/js/services/users.js"></script>
+    <script src="/js/services/entitlements.js"></script>
     <!--SCRIPTS END-->
   
 

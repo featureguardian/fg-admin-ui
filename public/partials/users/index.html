@@ -3,6 +3,25 @@
 
 <ul>
 	<li ng-repeat="user in users">
-		<a href="#/user/{{user.id}}">{{user.email}}</a>
+		<a href="#/user/{{user.id}}">{{user.email}}</a><span> - provider id: {{user.providerId}}</span>
 	</li>
 </ul>
+
+<form ng-submit="createUser()">
+
+  <h4>Add New User</h4>
+
+  <div class="form-group"">
+    <label for="user-email">User Email Address</label>
+    <input type="email" class="form-control" id="user-email" placeholder="User Email Address" ng-model="userEmail" required>
+  </div>
+  <div class="form-group">
+    <label for="user-provider">Authentication Provider Id</label>
+    <input type="text" class="form-control" id="user-provider" placeholder="Authentication Provider Id" ng-model="userProvider" required>
+  </div>
+  <div class="form-group">
+    <label for="user-type">User Type</label>
+    <input type="text" class="form-control" id="user-type" placeholder="Any Identifier for New User" ng-model="userType">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
