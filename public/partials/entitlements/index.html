@@ -1,23 +1,64 @@
 <h3>Entitlements</h3>
 
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Entitlements</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>Entitlement</th>
+                            <th>Type</th>
+                            <th></th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="entitlement in entitlements">
+                                <td><a href="#/entitlement/{{entitlement.id}}">{{entitlement.name}}</a></td>
+                                <td>{{entitlement.type}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" aria-label="Remove" ng-click="removeEntitlement($index, $event)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary" aria-label="Remove" ng-click="openEntitlement($index, $event)">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create New Entitlement</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <form ng-submit="createEntitlement()">
 
-<ul>
-	<li ng-repeat="entitlement in entitlements">
-		<a href="#/entitlement/{{entitlement.id}}">{{entitlement.name}}</a>
-	</li>
-</ul>
-
-<form ng-submit="createEntitlement()">
-
-  <h4>Create New Entitlement</h4>
-
-  <div class="form-group"">
-    <label for="entitlement-name">Entitlement Name</label>
-    <input type="text" class="form-control" id="entitlement-name" placeholder="Entitlement Name" ng-model="entitlementName" required>
-  </div>
-  <div class="form-group">
-    <label for="entitlement-type">Entitlement Type</label>
-    <input type="text" class="form-control" id="entitlement-type" placeholder="Any Identifier for New Entitlement" ng-model="entitlementType">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+                        <div class="form-group">
+                            <label for="entitlement-name">Entitlement Name</label>
+                            <input type="text" class="form-control" id="entitlement-name" placeholder="Entitlement Name" ng-model="entitlementName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="entitlement-type">Entitlement Type</label>
+                            <input type="text" class="form-control" id="entitlement-type" placeholder="Any Identifier for New Entitlement" ng-model="entitlementType">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

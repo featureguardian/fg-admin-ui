@@ -1,27 +1,73 @@
 <h3>Users</h3>
 
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th>Provider Id</th>
+                            <th></th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in users">
+                                <td><a href="#/user/{{user.id}}">{{user.email}}</a></td>
+                                <td>{{user.type}}</td>
+                                <td>{{user.providerId}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" aria-label="Remove" ng-click="removeUser($index, $event)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary" aria-label="Remove" ng-click="openUser($index, $event)">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create New User</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <form ng-submit="createUser()">
 
-<ul>
-	<li ng-repeat="user in users">
-		<a href="#/user/{{user.id}}">{{user.email}}</a><span> - provider id: {{user.providerId}}</span>
-	</li>
-</ul>
+                        <div class="form-group">
+                            <label for="user-email">User Email Address</label>
+                            <input type="email" class="form-control" id="user-email" placeholder="User Email Address" ng-model="userEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-provider">Authentication Provider Id</label>
+                            <input type="text" class="form-control" id="user-provider" placeholder="Authentication Provider Id" ng-model="userProvider" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-type">User Type</label>
+                            <input type="text" class="form-control" id="user-type" placeholder="Any Identifier for New User" ng-model="userType">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<form ng-submit="createUser()">
 
-  <h4>Add New User</h4>
 
-  <div class="form-group"">
-    <label for="user-email">User Email Address</label>
-    <input type="email" class="form-control" id="user-email" placeholder="User Email Address" ng-model="userEmail" required>
-  </div>
-  <div class="form-group">
-    <label for="user-provider">Authentication Provider Id</label>
-    <input type="text" class="form-control" id="user-provider" placeholder="Authentication Provider Id" ng-model="userProvider" required>
-  </div>
-  <div class="form-group">
-    <label for="user-type">User Type</label>
-    <input type="text" class="form-control" id="user-type" placeholder="Any Identifier for New User" ng-model="userType">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>

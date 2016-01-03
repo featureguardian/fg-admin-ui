@@ -1,90 +1,202 @@
-<h3>{{user.email}}</h3>
+<h3>{{user.email}} <button class="btn btn-success btn-sm" ng-click="openUser()" style="display:inline;">Edit User</button></h3>
 
-<h4>Roles</h4>
 <div class="row">
-	<div class="col-md-4">
-		
+	<div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Current Roles</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>Role</th>
+                            <th>Type</th>
+                            <th>Restrictions</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="role in user.roles">
+                                <td><a href="#/role/{{role.id}}">{{role.name}}</a></td>
+                                <td>{{role.type}}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" type="button" ng-click="openRestrictions($index)">
+                                        <span class="badge">{{getRestrictions(user.id, role.id)}}</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" aria-label="Remove" ng-click="removeFromRole(role.id, $event)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
-	<div class="col-md-4">
-		<div class="panel panel-primary">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Current Roles <small>click to remove</small></h3>
-		  </div>
-		  <div class="panel-body">
-		    <div class="list-group">
-			  <button ng-repeat="role in user.roles" type="button" class="list-group-item" ng-click="removeFromRole(role.id, $event)">{{role.name}}</button>
-			</div>
-		  </div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="panel panel-primary">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Available Roles <small>click to add</small></h3>
-		  </div>
-		  <div class="panel-body">
-		    <div class="list-group">
-			  <button ng-repeat="role in roles" type="button" class="list-group-item" ng-click="addToRole(role.id, $event)">{{role.name}}</button>
-			</div>
-		  </div>
-		</div>
+	<div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Available Roles</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>Role</th>
+                            <th>Type</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="role in roles">
+                                <td><a href="#/role/{{role.id}}">{{role.name}}</a></td>
+                                <td>{{role.type}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-success" aria-label="Remove" ng-click="addToRole(role.id, $event)">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
 
 
-<h4>Entitlements (in addition to entitlements granted by role)</h4>
 <div class="row">
-	<div class="col-md-4">
-		
+	<div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Current Entitlements <small>aside from entitlements granted through roles</small></h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>Entitlement</th>
+                            <th>Type</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="entitlement in user.entitlements">
+                                <td><a href="#/entitlement/{{entitlement.id}}">{{entitlement.name}}</a></td>
+                                <td>{{entitlement.type}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" aria-label="Remove" ng-click="removeEntitlement(entitlement.id, $event)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
-	<div class="col-md-4">
-		<div class="panel panel-primary">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Current Entitlements <small>click to remove</small></h3>
-		  </div>
-		  <div class="panel-body">
-		    <div class="list-group">
-			  <button ng-repeat="entitlement in user.entitlements" type="button" class="list-group-item" ng-click="removeEntitlement(entitlement.id, $event)">{{entitlement.name}}</button>
-			</div>
-		  </div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="panel panel-primary">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Available Entitlements <small>click to add</small></h3>
-		  </div>
-		  <div class="panel-body">
-		    <div class="list-group">
-			  <button ng-repeat="entitlement in entitlements" type="button" class="list-group-item" ng-click="giveEntitlement(entitlement.id, $event)">{{entitlement.name}}</button>
-			</div>
-		  </div>
-		</div>
+	<div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Available Entitlements</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>Entitlement</th>
+                            <th>Type</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="entitlement in entitlements">
+                                <td><a href="#/entitlement/{{entitlement.id}}">{{entitlement.name}}</a></td>
+                                <td>{{entitlement.type}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-success" aria-label="Remove" ng-click="giveEntitlement(entitlement.id, $event)">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
 
-<h4>Custom Attributes</h4>
 
-<ul>
-	<li ng-repeat="attr in user.customAttributes">
-		<a href="#/customattribute/{{attr.id}}">{{attr.key}} : {{attr.value}}</a>
-		<button type="button" class="btn btn-sm btn-primary" aria-label="Remove" ng-click="removeAttr($index)">
-		  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-		</button>
-	</li>
-</ul>
 
-<form ng-submit="createCustomAttr()">
+<div class="row">
+	<div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Custom Attributes</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>Key</th>
+                            <th>Value</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="attr in user.customAttributes">
+                                <td>{{attr.key}}</td>
+                                <td>{{attr.value}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" aria-label="Remove" ng-click="removeAttr($index)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-  <h4>Create New Custom Attribute for this User</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create New Custom Attribute for this User</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <form ng-submit="createCustomAttr()">
 
-  <div class="form-group"">
-    <label for="key">Attribute Key</label>
-    <input type="text" class="form-control" id="key" placeholder="Key" ng-model="attrKey" required>
-  </div>
-  <div class="form-group">
-    <label for="val">Attribute Value</label>
-    <input type="text" class="form-control" id="val" placeholder="Value" ng-model="attrValue" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+                        <h4>Create New Custom Attribute for this User</h4>
+
+                        <div class="form-group">
+                            <label for="key">Attribute Key</label>
+                            <input type="text" class="form-control" id="key" placeholder="Key" ng-model="attrKey" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="val">Attribute Value</label>
+                            <input type="text" class="form-control" id="val" placeholder="Value" ng-model="attrValue" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

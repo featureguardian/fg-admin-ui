@@ -10,7 +10,8 @@ var fg = angular.module('featureguardian', [
     'userServices',
     'ui.bootstrap',
     'ngStorage',
-    'authController'
+    'authController',
+    'ngLodash'
 ]);
 
 fg.constant('$fgConfig', {apiBaseUrl: 'http://localhost', apiPort: ':1337'});

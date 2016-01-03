@@ -1,4 +1,4 @@
-<h3>{{entitlement.name}}</h3>
+<h3>{{entitlement.name}} <button class="btn btn-success btn-sm" ng-click="openEntitlement()" style="display:inline;">Edit Entitlement</button></h3>
 
 <h4>Roles with this Entitlement</h4>
 
@@ -17,29 +17,60 @@
 	</li>
 </ul>
 
-<h4>Custom Attributes for this Entitlement</h4>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-primary" style="height:370px;">
+			<div class="panel-heading">
+				<h3 class="panel-title">Custom Attributes</h3>
+			</div>
+			<div class="panel-body">
+				<div style="overflow-y:auto;height:310px">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+							<th>Key</th>
+							<th>Value</th>
+							<th></th>
+							</thead>
+							<tbody>
+							<tr ng-repeat="attr in entitlement.customAttributes">
+								<td>{{attr.key}}</td>
+								<td>{{attr.value}}</td>
+								<td>
+									<button type="button" class="btn btn-sm btn-primary" aria-label="Remove" ng-click="removeAttr($index)">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-<ul>
-	<li ng-repeat="attr in entitlement.customAttributes">
-		<a href="#/customattribute/{{attr.id}}">{{attr.key}} : {{attr.value}}</a>
-		<button type="button" class="btn btn-sm btn-primary" aria-label="Remove" ng-click="removeAttr($index)">
-		  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-		</button>
-	</li>
-</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-primary" style="height:370px;">
+			<div class="panel-heading">
+				<h3 class="panel-title">Create New Custom Attribute for this Entitlement</h3>
+			</div>
+			<div class="panel-body">
+				<div style="overflow-y:auto;height:310px">
+					<form ng-submit="createCustomAttr()">
 
-<form ng-submit="createCustomAttr()">
-
-  <h4>Create New Custom Attribute for this Entitlement</h4>
-
-  <div class="form-group"">
-    <label for="key">Attribute Key</label>
-    <input type="text" class="form-control" id="key" placeholder="Key" ng-model="attrKey" required>
-  </div>
-  <div class="form-group">
-    <label for="val">Attribute Value</label>
-    <input type="text" class="form-control" id="val" placeholder="Value" ng-model="attrValue" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+						<div class="form-group">
+							<label for="key">Attribute Key</label>
+							<input type="text" class="form-control" id="key" placeholder="Key" ng-model="attrKey" required>
+						</div>
+						<div class="form-group">
+							<label for="val">Attribute Value</label>
+							<input type="text" class="form-control" id="val" placeholder="Value" ng-model="attrValue" required>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
