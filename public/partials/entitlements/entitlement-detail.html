@@ -1,21 +1,136 @@
 <h3>{{entitlement.name}} <button class="btn btn-success btn-sm" ng-click="openEntitlement()" style="display:inline;">Edit Entitlement</button></h3>
 
-<h4>Roles with this Entitlement</h4>
 
-<ul>
-	<li ng-repeat="role in entitlement.roles">
-		<a href="#/role/{{role.id}}">{{role.name}}</a>
-	</li>
-</ul>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-primary" style="height:370px;">
+			<div class="panel-heading">
+				<h3 class="panel-title">Roles with this Entitlement</h3>
+			</div>
+			<div class="panel-body">
+				<div style="overflow-y:auto;height:310px">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+							<th>Role</th>
+							<th>Type</th>
+							<th></th>
+							</thead>
+							<tbody>
+							<tr ng-repeat="role in entitlement.roles">
+								<td><a href="#/role/{{role.id}}">{{role.name}}</a></td>
+								<td>{{role.type}}</td>
+								<td>
+									<button type="button" class="btn btn-sm btn-danger" aria-label="Remove" ng-click="removeRoleFromEntitlement($index, $event)">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-primary" style="height:370px;">
+			<div class="panel-heading">
+				<h3 class="panel-title">Available Roles</h3>
+			</div>
+			<div class="panel-body">
+				<div style="overflow-y:auto;height:310px">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+							<th>Role</th>
+							<th>Type</th>
+							<th></th>
+							</thead>
+							<tbody>
+							<tr ng-repeat="role in roles">
+								<td><a href="#/role/{{role.id}}">{{role.name}}</a></td>
+								<td>{{entitlement.type}}</td>
+								<td>
+									<button type="button" class="btn btn-sm btn-success" aria-label="Remove" ng-click="addRoleToEntitlement($index, $event)">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-<h4>Users with this Entitlement</h4>
-<p>Users could have this entitlement through role as well</p>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users with this Entitlement</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in entitlement.users">
+                                <td><a href="#/user/{{user.id}}">{{user.email}}</a></td>
+                                <td>{{user.type}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" aria-label="Remove" ng-click="removeUserFromEntitlement($index, $event)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary" style="height:370px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Available Users</h3>
+            </div>
+            <div class="panel-body">
+                <div style="overflow-y:auto;height:310px">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in users">
+                                <td><a href="#/user/{{user.id}}">{{user.email}}</a></td>
+                                <td>{{user.type}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-success" aria-label="Remove" ng-click="addUserToEntitlement($index, $event)">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<ul>
-	<li ng-repeat="user in entitlement.users">
-		<a href="#/user/{{user.id}}">{{user.email}}</a>
-	</li>
-</ul>
 
 <div class="row">
 	<div class="col-md-6">

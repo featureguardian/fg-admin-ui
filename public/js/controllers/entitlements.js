@@ -72,6 +72,8 @@ entitlementControllers.controller('EntitlementDetailCtrl', ['$scope', '$routePar
 
 	Entitlements.get({entitlementId: $routeParams.entitlementId}, function(entitlement){
 		$scope.entitlement = entitlement;
+    $scope.getRolesNotInEntitlement();
+    $scope.getUsersNotInEntitlement();
 	});
 
 	$scope.attrKey = '';
@@ -131,6 +133,81 @@ entitlementControllers.controller('EntitlementDetailCtrl', ['$scope', '$routePar
         //$log.info('Modal dismissed at: ' + new Date());
       });
     };
+
+    $scope.removeRoleFromEntitlement = function(idx){
+
+      var role = $scope.entitlement.roles[idx];
+
+      var resource = $resource(url + '/role/removeFromEntitlement/:entitlementId/:roleId', {}, {
+        post: { method: 'POST', headers: { Authorization: $localStorage.fgToken.t }}
+      });
+      resource.post({entitlementId: $scope.entitlement.id, roleId: role.id}, function(role){
+        $scope.entitlement.roles.splice(idx, 1);
+        $scope.roles.push(role);
+      });
+    },
+
+      $scope.getRolesNotInEntitlement = function(){
+
+        var resource = $resource(url + '/role/rolesNotInEntitlement/:entitlementId', {}, {
+          get: { method: 'GET', isArray: true, headers: { Authorization: $localStorage.fgToken.t }}
+        });
+        resource.get({entitlementId: $scope.entitlement.id}, function(roles){
+          $scope.roles = roles;
+        });
+      },
+
+      $scope.addRoleToEntitlement = function(idx){
+
+        var role = $scope.roles[idx];
+
+        var resource = $resource(url + '/role/addToEntitlement/:entitlementId/:roleId', {}, {
+          post: { method: 'POST', headers: { Authorization: $localStorage.fgToken.t }}
+        });
+        resource.post({entitlementId: $scope.entitlement.id, roleId: role.id}, function(role){
+          $scope.entitlement.roles.push(role);
+          $scope.roles.splice(idx, 1);
+        });
+      },
+
+      $scope.getUsersNotInEntitlement = function(){
+
+        var resource = $resource(url + '/entitlement/usersNotInEntitlement/:entitlementId', {}, {
+          get: { method: 'GET', isArray: true, headers: { Authorization: $localStorage.fgToken.t }}
+        });
+        resource.get({entitlementId: $scope.entitlement.id}, function(users){
+          $scope.users = users;
+        });
+      },
+
+      $scope.addUserToEntitlement = function(idx) {
+
+        var user = $scope.users[idx];
+
+        var resource = $resource(url + '/user/giveEntitlement/:userId/:entitlementId', {}, {
+          post: { method: 'POST', headers: { Authorization: $localStorage.fgToken.t }}
+        });
+        resource.post({userId: user.id, entitlementId: $scope.entitlement.id}, function(usr) {
+          $scope.users.splice(idx, 1);
+          $scope.entitlement.users.push(usr);
+        });
+
+      },
+
+      $scope.removeUserFromEntitlement = function(idx){
+
+        var user = $scope.entitlement.users[idx];
+
+        var resource = $resource(url + '/user/removeEntitlement/:userId/:entitlementId', {}, {
+          post: { method: 'POST', headers: { Authorization: $localStorage.fgToken.t }}
+        });
+        resource.post({userId: user.id, entitlementId: $scope.entitlement.id}, function(usr){
+          $scope.entitlement.users.splice(idx, 1);
+          $scope.users.push(usr);
+        });
+
+      }
+
 
 }]);
 
